@@ -3,8 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <!-- Anti-cache (ayuda en navegadores, especialmente Safari) -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
   <title>INVERSPRO | Venta minorista de combustible</title>
   <meta name="description" content="INVERSPRO S.A.S. Venta minorista de combustible y proyectos de expansión estratégica.">
+
   <style>
     :root{
       --bg:#071529;
@@ -18,6 +25,7 @@
       --max:1100px;
     }
     *{box-sizing:border-box}
+    html, body { height:100%; }
     body{
       margin:0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -29,6 +37,7 @@
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
 
+    /* NAV */
     .nav{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
@@ -42,12 +51,12 @@
     }
     .brand{
       display:flex; align-items:center; gap:14px;
-      font-weight:800; letter-spacing:2px;
     }
     .brand img{
       height:40px;
+      width:auto;
+      display:block;
     }
-
     .links{display:flex; gap:16px; flex-wrap:wrap; justify-content:flex-end}
     .links a{color:var(--muted); font-weight:600; font-size:14px}
     .links a:hover{color:#fff}
@@ -61,6 +70,7 @@
       font-size:14px;
       gap:10px;
       transition: transform .12s ease;
+      cursor:pointer;
     }
     .btn.primary{
       border:none;
@@ -71,36 +81,114 @@
     .btn:active{transform: translateY(0px)}
     .right{display:flex; gap:10px; align-items:center}
 
-    .hero{padding:80px 0 40px; text-align:center}
-
-    .hero-logo{
-      max-width:480px;
-      width:100%;
-      margin-bottom:30px;
+    /* HERO */
+    .hero{padding:72px 0 34px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
     }
+    .hero-card{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding:26px;
+      box-shadow: var(--shadow);
+    }
+    .hero-logo{
+      display:block;
+      max-width:360px;
+      width:100%;
+      height:auto;
+      margin:0 0 16px 0;
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,.25));
+    }
+    .kicker{color:var(--muted); font-weight:800; letter-spacing:1px; text-transform:uppercase; font-size:12px}
+    h1{margin:10px 0 10px; font-size:42px; line-height:1.08}
+    .sub{color:var(--muted); font-size:16px; line-height:1.6; max-width:62ch}
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
 
-    h1{margin:10px 0 10px; font-size:42px; line-height:1.1}
-    .sub{color:var(--muted); font-size:16px; line-height:1.6; max-width:750px; margin:auto}
+    .stats{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      height:100%;
+    }
+    .stat{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      padding:18px;
+    }
+    .stat b{font-size:18px}
+    .stat span{display:block; color:var(--muted); margin-top:6px; font-size:13px; line-height:1.4}
 
-    section{padding:40px 0}
+    /* SECTIONS */
+    section{padding:34px 0}
+    .title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .title h2{margin:0; font-size:22px}
+    .title p{margin:0; color:var(--muted); font-size:14px}
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    .grid2{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+    }
     .card{
       border:1px solid var(--line);
       border-radius: var(--radius);
       background: rgba(255,255,255,.03);
-      padding:22px;
-      margin-bottom:18px;
+      padding:18px;
     }
-    .card h3{margin-top:0}
-    .muted{color:var(--muted); line-height:1.6}
+    .card h3{margin:0 0 8px; font-size:16px}
+    .card p{margin:0; color:var(--muted); font-size:14px; line-height:1.55}
+    .pill{
+      display:inline-block;
+      padding:7px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      color: #e7eef7;
+      background: rgba(255,255,255,.03);
+      font-size:12px;
+      font-weight:700;
+      margin-top:10px;
+    }
 
+    /* PROJECTS */
+    .projects{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    .proj{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    }
+    .proj small{color:var(--muted)}
+    .proj ul{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.55; font-size:14px}
+
+    /* CONTACT */
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .contact .card a{color:#fff; text-decoration:underline; text-underline-offset:4px}
     .footer{
       border-top:1px solid var(--line);
       padding:20px 0 34px;
       color:var(--muted);
       font-size:12px;
-      text-align:center;
     }
 
+    /* WHATSAPP FLOAT */
     .wa{
       position: fixed;
       right: 16px;
@@ -109,95 +197,305 @@
       box-shadow: var(--shadow);
     }
 
+    /* RESPONSIVE */
     @media (max-width: 920px){
+      .hero-grid{grid-template-columns: 1fr}
       h1{font-size:36px}
+      .grid3{grid-template-columns: 1fr}
+      .grid2{grid-template-columns: 1fr}
+      .projects{grid-template-columns: 1fr}
+      .contact{grid-template-columns: 1fr}
       .links{display:none}
+      .hero-logo{max-width:420px}
     }
   </style>
 </head>
+
 <body>
 
   <!-- NAV -->
   <div class="nav">
     <div class="wrap nav-inner">
       <div class="brand">
-        <img src="logo-inverspro.png" alt="INVERSPRO S.A.S.">
+        <!-- Cache-busting en logo -->
+        <img src="https://gerencia524.github.io/inverspro/logo-inverspro.png?v=20260217" alt="INVERSPRO S.A.S.">
+      </div>
+
+      <div class="links">
+        <a href="#servicios">Servicios</a>
+        <a href="#principal">Actividad</a>
+        <a href="#cumplimiento">Cumplimiento</a>
+        <a href="#capacidad">Capacidad</a>
+        <a href="#gobierno">Gobierno</a>
+        <a href="#proyectos">Expansión</a>
+        <a href="#contacto">Contacto</a>
       </div>
 
       <div class="right">
-        <a class="btn primary" href="#contacto">Contacto</a>
+        <a class="btn" href="#contacto">Contactar</a>
+        <a class="btn primary" href="#principal">Ver actividad</a>
       </div>
     </div>
   </div>
 
   <!-- HERO -->
   <header class="hero">
-    <div class="wrap">
-      <img src="logo-inverspro.png" alt="INVERSPRO S.A.S." class="hero-logo">
+    <div class="wrap hero-grid">
+      <div class="hero-card">
+        <img class="hero-logo" src="https://gerencia524.github.io/inverspro/logo-inverspro.png?v=20260217" alt="INVERSPRO S.A.S.">
 
-      <h1>Venta Minorista de Combustible</h1>
+        <div class="kicker">Actividad principal vigente</div>
+        <h1>Venta minorista de combustible</h1>
 
-      <p class="sub">
-        INVERSPRO S.A.S. desarrolla actualmente su actividad principal en la comercialización
-        minorista de combustible, con enfoque en eficiencia operativa, cumplimiento normativo
-        y sostenibilidad financiera.
-      </p>
+        <p class="sub">
+          INVERSPRO S.A.S. desarrolla actualmente su actividad principal en la comercialización minorista de combustible,
+          con enfoque en eficiencia operativa, cumplimiento normativo y sostenibilidad financiera.
+          El resto de líneas corresponden a proyectos de expansión y diversificación corporativa.
+        </p>
+
+        <div class="cta">
+          <a class="btn primary" href="#contacto">Hablar con Gerencia</a>
+          <a class="btn" href="#cumplimiento">Ver cumplimiento</a>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <b>Operación regulada</b>
+          <span>Controles internos, trazabilidad y buenas prácticas operativas.</span>
+        </div>
+        <div class="stat">
+          <b>Eficiencia</b>
+          <span>Optimización de costos, proveedores e inventarios.</span>
+        </div>
+        <div class="stat">
+          <b>Disciplina financiera</b>
+          <span>Control de flujo de caja y seguimiento operativo.</span>
+        </div>
+        <div class="stat">
+          <b>Expansión</b>
+          <span>Diversificación en activos reales y servicios.</span>
+        </div>
+      </div>
     </div>
   </header>
 
-  <section class="wrap">
-    <div class="card">
-      <h3>Actividad Principal</h3>
-      <p class="muted">
-        Comercialización minorista de combustible con control de inventarios,
-        gestión de proveedores y optimización de costos operativos.
-      </p>
-    </div>
+  <!-- SERVICES -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="title">
+        <h2>Servicios</h2>
+        <p>Lo que hacemos y cómo generamos valor.</p>
+      </div>
 
-    <h2>Proyectos de Expansión</h2>
-
-    <div class="card">
-      <h3>Desarrollo Inmobiliario</h3>
-      <p class="muted">
-        Estructuración y valorización de activos inmobiliarios como estrategia de diversificación.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Hospitalidad y Servicios</h3>
-      <p class="muted">
-        Optimización operativa y crecimiento estratégico en el sector de hospitalidad.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Gestión Estratégica de Inversiones</h3>
-      <p class="muted">
-        Análisis financiero, estructuración de proyectos y administración de portafolio.
-      </p>
+      <div class="grid3">
+        <div class="card">
+          <h3>Gestión estratégica</h3>
+          <p>Estructuración, análisis, seguimiento y control de proyectos con métricas claras.</p>
+          <div class="pill">Estrategia &amp; Control</div>
+        </div>
+        <div class="card">
+          <h3>Administración operativa</h3>
+          <p>Optimización de costos, control de proveedores, procesos y ejecución en operación diaria.</p>
+          <div class="pill">Operaciones</div>
+        </div>
+        <div class="card">
+          <h3>Desarrollo y expansión</h3>
+          <p>Gestión y desarrollo de líneas de crecimiento como parte de la diversificación corporativa.</p>
+          <div class="pill">Expansión</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="contacto" class="wrap">
-    <div class="card">
-      <h3>Contacto Corporativo</h3>
-      <p>
-        Correo:
-        <a href="mailto:gerencia@inverspro.com">gerencia@inverspro.com</a>
-      </p>
-      <p>
-        WhatsApp:
-        <a href="https://wa.me/573113903625" target="_blank" rel="noopener">
-          +57 311 390 3625
-        </a>
-      </p>
+  <!-- MAIN ACTIVITY -->
+  <section id="principal">
+    <div class="wrap">
+      <div class="title">
+        <h2>Actividad principal</h2>
+        <p>Negocio vigente: venta minorista de combustible.</p>
+      </div>
+
+      <div class="card">
+        <h3>Comercialización minorista de combustible</h3>
+        <p>
+          Operación orientada a eficiencia, control de inventarios, gestión de proveedores y
+          administración financiera, alineada con la regulación y estándares de seguridad del sector.
+        </p>
+        <div class="pill">Core Business</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1) COMPLIANCE -->
+  <section id="cumplimiento">
+    <div class="wrap">
+      <div class="title">
+        <h2>Gestión operativa y cumplimiento</h2>
+        <p>Control, seguridad y disciplina operativa.</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <h3>Cumplimiento normativo</h3>
+          <p>Operación alineada con regulación del sector, trazabilidad y controles internos.</p>
+          <div class="pill">Compliance</div>
+        </div>
+        <div class="card">
+          <h3>Control de inventarios</h3>
+          <p>Gestión estructurada de abastecimiento, rotación y control de pérdidas operativas.</p>
+          <div class="pill">Inventarios</div>
+        </div>
+        <div class="card">
+          <h3>Gestión de riesgo operativo</h3>
+          <p>Protocolos de seguridad, monitoreo continuo y control financiero para mitigar riesgos.</p>
+          <div class="pill">Riesgo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2) CAPACITY -->
+  <section id="capacidad">
+    <div class="wrap">
+      <div class="title">
+        <h2>Capacidad operativa</h2>
+        <p>Estructura, proveedores y control administrativo.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Gestión de proveedores</h3>
+          <p>Relacionamiento estructurado con proveedores del sector energético, optimización de condiciones y control contractual.</p>
+          <div class="pill">Proveedores</div>
+        </div>
+        <div class="card">
+          <h3>Estructura administrativa</h3>
+          <p>Supervisión operativa y financiera, control de flujo de caja y soporte a decisiones estratégicas.</p>
+          <div class="pill">Administración</div>
+        </div>
+        <div class="card">
+          <h3>Procesos y control</h3>
+          <p>Estandarización de procesos, auditoría interna básica y seguimiento de indicadores operativos.</p>
+          <div class="pill">Procesos</div>
+        </div>
+        <div class="card">
+          <h3>Continuidad operativa</h3>
+          <p>Planificación de abastecimiento y gestión de contingencias para sostener niveles de servicio.</p>
+          <div class="pill">Continuidad</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3) GOVERNANCE & FINANCE -->
+  <section id="gobierno">
+    <div class="wrap">
+      <div class="title">
+        <h2>Gobierno corporativo y gestión financiera</h2>
+        <p>Dirección estratégica, transparencia y disciplina.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Dirección estratégica</h3>
+          <p>Gestión ejecutiva orientada a crecimiento sostenible, diversificación y expansión estructurada.</p>
+          <div class="pill">Estrategia</div>
+        </div>
+        <div class="card">
+          <h3>Transparencia y control</h3>
+          <p>Seguimiento financiero continuo, control interno y disciplina administrativa como base de la operación.</p>
+          <div class="pill">Control</div>
+        </div>
+        <div class="card">
+          <h3>Gestión de caja</h3>
+          <p>Planeación de flujo de caja, priorización de pagos y administración de liquidez.</p>
+          <div class="pill">Cash Management</div>
+        </div>
+        <div class="card">
+          <h3>Reporting</h3>
+          <p>Indicadores de desempeño y reportes gerenciales para soportar decisiones y expansión.</p>
+          <div class="pill">KPIs</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="proyectos">
+    <div class="wrap">
+      <div class="title">
+        <h2>Proyectos de expansión</h2>
+        <p>Estas líneas están en desarrollo y se publicarán con fichas y avances.</p>
+      </div>
+
+      <div class="projects">
+        <div class="proj">
+          <b>Desarrollo inmobiliario</b><br>
+          <small>Diversificación y valorización patrimonial</small>
+          <ul>
+            <li>Estructura comercial y financiera</li>
+            <li>Etapas del proyecto y cronograma</li>
+            <li>Gestión de preventas y recaudos</li>
+          </ul>
+        </div>
+        <div class="proj">
+          <b>Hospitalidad y servicios</b><br>
+          <small>Operación, eficiencia y crecimiento</small>
+          <ul>
+            <li>Control de costos por categoría</li>
+            <li>Optimización de compras y proveedores</li>
+            <li>Estrategias de ocupación y consumo</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <div class="card">
+        <h3>Gestión estratégica de inversiones</h3>
+        <p>
+          Estructuración financiera, análisis de oportunidades y administración de portafolio como plataforma
+          de crecimiento corporativo.
+        </p>
+        <div class="pill">Expansión institucional</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="title">
+        <h2>Contacto corporativo</h2>
+        <p>Consultas estratégicas, alianzas y expansión.</p>
+      </div>
+
+      <div class="contact">
+        <div class="card">
+          <h3>Correo Ejecutivo</h3>
+          <p>Comunicación directa con gerencia:</p>
+          <p><a href="mailto:gerencia@inverspro.com">gerencia@inverspro.com</a></p>
+          <div class="pill">Canal oficial</div>
+        </div>
+
+        <div class="card">
+          <h3>WhatsApp corporativo</h3>
+          <p>Atención directa:</p>
+          <p><a href="https://wa.me/573113903625" target="_blank" rel="noopener">+57 311 390 3625</a></p>
+          <div class="pill">Respuesta ágil</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <div class="wrap footer">
-    © 2026 INVERSPRO S.A.S. — Venta minorista de combustible y desarrollo estratégico de inversiones.
+    © 2026 INVERSPRO S.A.S. — Venta minorista de combustible y proyectos de expansión estratégica.
+    <br>
+    Si no ves cambios por caché, abre la web con <b>?v=1</b> al final del link.
   </div>
 
+  <!-- WhatsApp Floating Button -->
   <a class="btn primary wa" href="https://wa.me/573113903625" target="_blank" rel="noopener">
     WhatsApp
   </a>
