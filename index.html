@@ -1,23 +1,366 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>INVERSPRO | En construcción</title>
-<style>
-body{margin:0;background:#0A1F3D;color:#fff;font-family:Arial,Helvetica,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;text-align:center}
-.box{max-width:640px;padding:28px}
-h1{font-size:44px;letter-spacing:4px;margin:0 0 14px}
-p{font-size:18px;color:#d7d7d7;line-height:1.6;margin:10px 0}
-small{display:block;margin-top:18px;color:#9a9a9a}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>INVERSPRO | Gestión estratégica de inversiones</title>
+  <meta name="description" content="INVERSPRO S.A.S. Gestión estratégica de inversiones, desarrollo inmobiliario y administración de activos.">
+  <style>
+    :root{
+      --bg:#071529;
+      --muted:#b8c2cf;
+      --text:#ffffff;
+      --line:rgba(255,255,255,.10);
+      --accent:#2aa3ff;
+      --accent2:#00d4a6;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 15% 10%, rgba(42,163,255,.18), transparent 55%),
+                  radial-gradient(900px 500px at 85% 20%, rgba(0,212,166,.12), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,21,41,.65);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:2px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 18px rgba(42,163,255,.45);
+    }
+    .links{display:flex; gap:16px; flex-wrap:wrap; justify-content:flex-end}
+    .links a{color:var(--muted); font-weight:600; font-size:14px}
+    .links a:hover{color:#fff}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      font-weight:700;
+      font-size:14px;
+      gap:10px;
+      transition: transform .12s ease;
+    }
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#071529;
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .btn:active{transform: translateY(0px)}
+    .right{display:flex; gap:10px; align-items:center}
+
+    /* HERO */
+    .hero{padding:64px 0 30px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .hero-card{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding:26px;
+      box-shadow: var(--shadow);
+    }
+    .kicker{color:var(--muted); font-weight:700; letter-spacing:1px; text-transform:uppercase; font-size:12px}
+    h1{margin:10px 0 10px; font-size:44px; line-height:1.05}
+    .sub{color:var(--muted); font-size:16px; line-height:1.6; max-width:62ch}
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+
+    .stats{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      height:100%;
+    }
+    .stat{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      padding:18px;
+    }
+    .stat b{font-size:20px}
+    .stat span{display:block; color:var(--muted); margin-top:6px; font-size:13px; line-height:1.4}
+
+    /* SECTIONS */
+    section{padding:32px 0}
+    .title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .title h2{margin:0; font-size:22px}
+    .title p{margin:0; color:var(--muted); font-size:14px}
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      padding:18px;
+    }
+    .card h3{margin:0 0 8px; font-size:16px}
+    .card p{margin:0; color:var(--muted); font-size:14px; line-height:1.55}
+    .pill{
+      display:inline-block;
+      padding:7px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      color: #e7eef7;
+      background: rgba(255,255,255,.03);
+      font-size:12px;
+      font-weight:700;
+      margin-top:10px;
+    }
+
+    /* PROJECTS */
+    .projects{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    .proj{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    }
+    .proj small{color:var(--muted)}
+    .proj ul{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.55; font-size:14px}
+
+    /* CONTACT */
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .contact .card a{color:#fff; text-decoration:underline; text-underline-offset:4px}
+    .footer{
+      border-top:1px solid var(--line);
+      padding:20px 0 34px;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    /* WHATSAPP FLOAT */
+    .wa{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 60;
+      box-shadow: var(--shadow);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 920px){
+      .hero-grid{grid-template-columns: 1fr}
+      h1{font-size:38px}
+      .grid3{grid-template-columns: 1fr}
+      .projects{grid-template-columns: 1fr}
+      .contact{grid-template-columns: 1fr}
+      .links{display:none}
+    }
+  </style>
 </head>
 <body>
-  <div class="box">
-    <h1>INVERSPRO</h1>
-    <p><b>Gestión estratégica de inversiones</b></p>
-    <p>Nuestra nueva plataforma digital está en construcción.</p>
-    <p>Contacto corporativo:<br>info@inverspro.co</p>
-    <small>© 2026 INVERSPRO S.A.S. Todos los derechos reservados.</small>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>INVERSPRO</span>
+      </div>
+
+      <div class="links">
+        <a href="#servicios">Servicios</a>
+        <a href="#proyectos">Portafolio</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+
+      <div class="right">
+        <a class="btn" href="#contacto">Contactar</a>
+        <a class="btn primary" href="#proyectos">Ver portafolio</a>
+      </div>
+    </div>
   </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-card">
+        <div class="kicker">Gestión estratégica de inversiones</div>
+        <h1>Construimos valor con disciplina, estructura y ejecución.</h1>
+        <p class="sub">
+          INVERSPRO S.A.S. gestiona y desarrolla oportunidades de inversión con enfoque en activos reales,
+          estructura financiera y administración operativa. Esta web se actualizará continuamente con
+          nuestro portafolio, avances y canales institucionales.
+        </p>
+
+        <div class="cta">
+          <a class="btn primary" href="#contacto">Hablar con Gerencia</a>
+          <a class="btn" href="#servicios">Conocer servicios</a>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <b>Activos reales</b>
+          <span>Enfoque en proyectos con soporte tangible y trazabilidad operativa.</span>
+        </div>
+        <div class="stat">
+          <b>Estructura</b>
+          <span>Modelación financiera, control, riesgo y reporting.</span>
+        </div>
+        <div class="stat">
+          <b>Ejecución</b>
+          <span>Operación, proveedores, procesos y eficiencia de costos.</span>
+        </div>
+        <div class="stat">
+          <b>Portafolio</b>
+          <span>Inmobiliario, hospitalidad, comercio y oportunidades especiales.</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SERVICES -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="title">
+        <h2>Servicios</h2>
+        <p>Lo que hacemos y cómo generamos valor.</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <h3>Gestión de inversiones</h3>
+          <p>Estructuración, análisis, seguimiento y control de proyectos de inversión con métricas claras.</p>
+          <div class="pill">Portafolio &amp; Reporting</div>
+        </div>
+        <div class="card">
+          <h3>Desarrollo inmobiliario</h3>
+          <p>Compra, desarrollo, valorización y comercialización de activos inmobiliarios y proyectos.</p>
+          <div class="pill">Real Estate</div>
+        </div>
+        <div class="card">
+          <h3>Administración operativa</h3>
+          <p>Optimización de costos, control de proveedores, procesos y ejecución en operación diaria.</p>
+          <div class="pill">Operaciones</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="proyectos">
+    <div class="wrap">
+      <div class="title">
+        <h2>Portafolio en evolución</h2>
+        <p>Vamos a ir agregando fichas, KPIs y avances.</p>
+      </div>
+
+      <div class="projects">
+        <div class="proj">
+          <b>Hospitalidad &amp; servicios</b><br>
+          <small>Operación, eficiencia y crecimiento de ingresos</small>
+          <ul>
+            <li>Control de costos por categoría</li>
+            <li>Optimización de compras y proveedores</li>
+            <li>Estrategias de ocupación y consumo</li>
+          </ul>
+        </div>
+        <div class="proj">
+          <b>Inmobiliario</b><br>
+          <small>Desarrollo, ventas y valorización</small>
+          <ul>
+            <li>Estructura comercial y financiera</li>
+            <li>Etapas del proyecto y cronograma</li>
+            <li>Gestión de preventas y recaudos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="sobre">
+    <div class="wrap">
+      <div class="title">
+        <h2>Sobre INVERSPRO</h2>
+        <p>Enfoque institucional, comunicación clara y procesos.</p>
+      </div>
+
+      <div class="card">
+        <p style="margin:0;color:var(--muted);line-height:1.7">
+          INVERSPRO S.A.S. es una organización orientada a construir valor mediante la administración estratégica de inversiones y activos.
+          Priorizamos disciplina financiera, control operativo y crecimiento sostenible. Esta página seguirá evolucionando
+          con portafolio, documentos corporativos y actualizaciones institucionales.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="title">
+        <h2>Contacto Corporativo</h2>
+        <p>Consultas estratégicas, alianzas e inversión.</p>
+      </div>
+
+      <div class="contact">
+        <div class="card">
+          <h3>Correo Ejecutivo</h3>
+          <p>Comunicación directa con gerencia:</p>
+          <p><a href="mailto:gerencia@inverspro.com">gerencia@inverspro.com</a></p>
+          <div class="pill">Canal oficial INVERSPRO</div>
+        </div>
+
+        <div class="card">
+          <h3>WhatsApp Corporativo</h3>
+          <p>Atención directa:</p>
+          <p><a href="https://wa.me/573113903625" target="_blank" rel="noopener">+57 311 390 3625</a></p>
+          <div class="pill">Respuesta ágil</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap footer">
+    © 2026 INVERSPRO S.A.S. — Todos los derechos reservados.
+  </div>
+
+  <!-- WhatsApp Floating Button -->
+  <a class="btn primary wa" href="https://wa.me/573113903625" target="_blank" rel="noopener">
+    WhatsApp
+  </a>
+
 </body>
 </html>
